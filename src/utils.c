@@ -6,24 +6,11 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 10:40:18 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/07 08:30:28 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 16:36:43 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	set_index(t_pile *pile)
-{
-	int	index;
-
-	index = 0;
-	while (pile)
-	{
-		pile->index = index;
-		pile = pile->next;
-		index++;
-	}
-}
 
 int	is_sorted(t_pile *pile)
 {
@@ -40,117 +27,50 @@ int	is_sorted(t_pile *pile)
 	return (1);
 }
 
-t_pile	*get_lower(t_pile *pile)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_pile	*act;
-	t_pile	*lower;
+	size_t	i;
 
-	lower = pile;
-	act = pile;
-	while (act->next)
-	{
-		if (act->nb < lower->nb)
-			lower = act;
-		act = act->next;
-	}
-	if (act->nb < lower->nb)
-		lower = act;
-	return (lower);
-}
-
-t_pile	*get_upper(t_pile *pile)
-{
-	t_pile	*act;
-	t_pile	*upper;
-
-	upper = pile;
-	act = pile;
-	while (act->next && act->next != pile)
-	{
-		if (act->nb > upper->nb)
-			upper = act;
-		act = act->next;
-	}
-	if (act->nb > upper->nb)
-		upper = act;
-	return (upper);
-}
-
-t_pile *new_pile_node(int value)
-{
-	t_pile *new;
-
-	new = (t_pile *)malloc(sizeof (t_pile));
-	if (!new)
-		return (NULL);
-	new->nb = value;
-	new->next = NULL;
-	new->prev = NULL;
-	new->target = NULL; 
-	return (new);
-}
-
-t_pile *pile_last(t_pile *pile)
-{
-	t_pile *last;
-
-	last = pile;
-	while (last->next)
-	{
-		last = last->next;
-	}
-	return (last);
-}
-
-void	pile_add_back(t_pile **pile, t_pile *new)
-{
-	t_pile	*last_node;
-
-	if (!*pile)
-	{
-		new->next = NULL;
-		new->prev = NULL;
-		*pile = new;
-	}
-	else
-	{
-		last_node = pile_last(*pile);
-		new->prev = last_node;
-		last_node->next = new;
-		new->next = NULL;
-	}
-}
-
-void	pile_add_front(t_pile **pile, t_pile *new)
-{
-	if (*pile == NULL)
-	{
-		new->next = NULL;
-		new->prev = NULL;
-		*pile = new;
-	}
-	else
-	{
-		new->prev = NULL;
-		(*pile)->prev = new;
-		new->next = *pile;
-		*pile = new;
-	}
-}
-
-int	pile_size(t_pile *pile)
-{
-	int     i;
-	t_pile  *node;
-
-	if (pile == NULL)
-		return (0);
 	i = 0;
-	node = pile;
-	while (node)
+	while ((s1[i] || s2[i]))
 	{
-		node = node->next;
+		if (s1[i] != s2[i])
+			return ((int)((unsigned char) s1[i] - (unsigned char) s2[i]));
 		i++;
 	}
-	return (i);
+	return (0);
+}
+
+int	greater(int a, int b)
+{
+	if (b > a)
+		return (b);
+	else
+		return (a);
+}
+
+int	total_cost(t_pile *node, t_ab *ab)
+{
+	int	a_dir;
+	int	b_dir;
+
+	a_dir = get_dir(ab->pile_a, node->target);
+	b_dir = get_dir(ab->pile_b, node);
+	if (a_dir == b_dir)
+		return (greater(node->cost, node->target->cost));
+	return (node->cost + node->target->cost);
+}
+
+void	destroy_pile(t_ab *ab)
+{
+	t_pile	*node;
+	t_pile	*next;
+
+	node = ab->pile_a;
+	while (node)
+	{
+		next = node->next;
+		free(node);
+		node = next;
+	}
 }

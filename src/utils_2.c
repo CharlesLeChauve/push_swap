@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_actions.c                                        :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 10:42:46 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/12 06:29:29 by tgibert          ###   ########.fr       */
+/*   Created: 2024/02/12 16:23:51 by tgibert           #+#    #+#             */
+/*   Updated: 2024/02/12 16:25:09 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sa(t_ab *ab)
+long	ft_atol(const char *str)
 {
-	ft_printf("sa\n");
-	swap(&(ab->pile_a));
-}
+	int		i;
+	int		sign;
+	long	result;
 
-void	ra(t_ab *ab)
-{
-	ft_printf("ra\n");
-	rotate(&(ab->pile_a));
-}
-
-void	rra(t_ab *ab)
-{
-	ft_printf("rra\n");
-	reverse_rotate(&(ab->pile_a));
-}
-
-void	pa(t_ab *ab)
-{
-	ft_printf("pa\n");
-	push(&ab->pile_b, &ab->pile_a);
+	result = 0;
+	sign = 1;
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-')
+	{
+		sign *= -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] <= '9' && str[i] >= '0' )
+	{
+		result *= 10;
+		result = result + str[i] - '0';
+		i++;
+	}
+	return (result * sign);
 }

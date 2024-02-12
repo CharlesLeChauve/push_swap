@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:40:04 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/08 09:23:20 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 06:34:01 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	print_pile_reverse(t_pile *pile)
 {
-	t_pile *act;
+	t_pile	*act;
 
 	act = pile->prev;
 	if (!act)
-		return;
+		return ;
 	while (act->prev != pile->prev)
 	{
 		ft_printf("%d\n", act->nb);
@@ -29,11 +29,11 @@ void	print_pile_reverse(t_pile *pile)
 
 void	print_pile(t_pile *pile)
 {
-	t_pile *act;
+	t_pile	*act;
 
 	act = pile;
 	if (!act)
-		return;
+		return ;
 	ft_printf("%d\n", act->nb);
 	act = act->next;
 	while (act && act != pile)
@@ -43,7 +43,12 @@ void	print_pile(t_pile *pile)
 	}
 }
 
-void	print_piles(t_ab ab)
+void	ft_perror(char *str)
+{
+	write(2, str, ft_strlen(str));
+}
+
+/* void	print_piles(t_ab ab)
 {
 	t_pile *act_a;
 	t_pile *act_b;
@@ -77,9 +82,4 @@ void	print_piles(t_ab ab)
 		else
 			ft_printf("\t\t\n");
 	}
-}
-
-void	ft_perror(char *str)
-{
-	write(2, str, ft_strlen(str));
-}
+} */

@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 08:37:33 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/08 09:13:38 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 16:49:07 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*join_buffer(char *buffer, char *line)
 	return (newl);
 }
 
-char	*read_instructions()
+char	*read_instructions(void)
 {
 	int		bread;
 	char	*buffer;
@@ -37,7 +37,7 @@ char	*read_instructions()
 
 	bread = 1;
 	buffer = (char *)malloc(1);
-	instructions = (char*)malloc(1);
+	instructions = (char *)malloc(1);
 	instructions[0] = 0;
 	while (bread == 1)
 	{
@@ -57,42 +57,35 @@ char	**parse_instructions(char *raw)
 	return (instructions);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	i;
-
-	i = 0;
-	while ((s1[i] || s2[i]))
-	{
-		if (s1[i] != s2[i])
-			return ((int)((unsigned char) s1[i] - (unsigned char) s2[i]));
-		i++;
-	}
-	return (0);
-}
-
 void	exec_action(t_ab *ab, char *instruct)
 {
 	if (!ft_strcmp(instruct, "pa"))
 		spa(ab);
-	if (!ft_strcmp(instruct, "pb"))
+	else if (!ft_strcmp(instruct, "pb"))
 		spb(ab);
-	if (!ft_strcmp(instruct, "sa"))
+	else if (!ft_strcmp(instruct, "sa"))
 		ssa(ab);
-	if (!ft_strcmp(instruct, "sb"))
+	else if (!ft_strcmp(instruct, "sb"))
 		ssb(ab);
-	if (!ft_strcmp(instruct, "ra"))
+	else if (!ft_strcmp(instruct, "ra"))
 		sra(ab);
-	if (!ft_strcmp(instruct, "rb"))
+	else if (!ft_strcmp(instruct, "rb"))
 		srb(ab);
-	if (!ft_strcmp(instruct, "rra"))
+	else if (!ft_strcmp(instruct, "rra"))
 		srra(ab);
-	if (!ft_strcmp(instruct, "rrb"))
+	else if (!ft_strcmp(instruct, "rrb"))
 		srrb(ab);
-	if (!ft_strcmp(instruct, "ss"))
+	else if (!ft_strcmp(instruct, "ss"))
 		sss(ab);
-	if (!ft_strcmp(instruct, "rr"))
+	else if (!ft_strcmp(instruct, "rr"))
 		srr(ab);
+	else if (!ft_strcmp(instruct, "rrr"))
+		srrr(ab);
+	else
+	{
+		ft_perror("Error\n");
+		exit(0);
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -108,17 +101,23 @@ int	main(int argc, char *argv[])
 		exit(0);
 	else
 		ab.pile_a = create_first_pile(argv + 1);
+	if (!ab.pile_a)
+	{
+		ft_perror("Error\n");
+		return (0);
+	}
 	raw_instructions = read_instructions();
 	instructions = parse_instructions(raw_instructions);
 	while (instructions[i])
-	{
-		ft_printf("action n: %d, action = %s\n", i, instructions[i]);
-		exec_action(&ab, instructions[i]);
-		i++;
-	}
-	print_piles(ab);
+		exec_action(&ab, instructions[i++]);
 	if (is_sorted(ab.pile_a) && !ab.pile_b)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	free(raw_instructions);
+	i = 0;
+	while (instructions[i])
+		free(instructions[i++]);
+	free(instructions);
+	destroy_pile(&ab);
 }

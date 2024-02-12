@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:45:04 by tgibert           #+#    #+#             */
-/*   Updated: 2023/12/21 06:52:03 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 15:25:51 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		ft_isprint(int c);
 int		ft_isascii(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int		ft_isspace(int c);
 int		ft_lstsize(t_list *lst);
 int		ft_sprintf(char *str, const char *input, ...);
 

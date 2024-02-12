@@ -6,29 +6,29 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 08:01:12 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/07 08:30:28 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 06:29:34 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void    ss(t_ab *ab)
+void	ss(t_ab *ab)
 {
-    ft_printf("ss\n");
-    swap(&(ab->pile_a));
-    swap(&(ab->pile_b));
+	ft_printf("ss\n");
+	swap(&(ab->pile_a));
+	swap(&(ab->pile_b));
 }
 
-void    rr(t_ab *ab)
+void	rr(t_ab *ab)
 {
-    ft_printf("rr\n");
-    rotate(&(ab->pile_a));
-    rotate(&(ab->pile_b));
+	ft_printf("rr\n");
+	rotate(&(ab->pile_a));
+	rotate(&(ab->pile_b));
 }
 
-void    rrr(t_ab *ab)
+void	rrr(t_ab *ab)
 {
-    ft_printf("rrr\n");
-    reverse_rotate(&(ab->pile_a));
-    reverse_rotate(&(ab->pile_b));
+	ft_printf("rrr\n");
+	reverse_rotate(&(ab->pile_a));
+	reverse_rotate(&(ab->pile_b));
 }

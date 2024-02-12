@@ -6,10 +6,9 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:41:30 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/07 08:31:16 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 16:36:21 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -19,14 +18,15 @@
 # include <unistd.h>
 # include "./libft/libft.h"
 
-# define INT_MAX 2147483647
+# define IMX 2147483647
+# define IMN -2147483648
 
 typedef struct s_pile
 {
-	int		nb;
-	int		index;
-	int		cost;
-	int		dir;
+	int				nb;
+	int				index;
+	int				cost;
+	int				dir;
 	struct s_pile	*target;
 	struct s_pile	*next;
 	struct s_pile	*prev;
@@ -38,18 +38,17 @@ typedef struct s_ab
 	t_pile	*pile_b;
 }			t_ab;
 
-
-void    sa(t_ab *ab);
-void    ra(t_ab *ab);
-void    rra(t_ab *ab);
-void    pa(t_ab *ab);
-void    sb(t_ab *ab);
-void    rb(t_ab *ab);
-void    rrb(t_ab *ab);
-void    pb(t_ab *ab);
-void    ss(t_ab *ab);
-void    rr(t_ab *ab);
-void    rrr(t_ab *ab);
+void	sa(t_ab *ab);
+void	ra(t_ab *ab);
+void	rra(t_ab *ab);
+void	pa(t_ab *ab);
+void	sb(t_ab *ab);
+void	rb(t_ab *ab);
+void	rrb(t_ab *ab);
+void	pb(t_ab *ab);
+void	ss(t_ab *ab);
+void	rr(t_ab *ab);
+void	rrr(t_ab *ab);
 
 void	rrbn(t_ab *ab, int n);
 void	rran(t_ab *ab, int n);
@@ -76,7 +75,24 @@ t_pile	*create_first_pile(char **av);
 void	ft_perror(char *str);
 void	print_piles(t_ab ab);
 
-void	set_index(t_pile *pile);
+void	set_indexes(t_ab *ab);
+void	set_costs(t_ab *ab);
+void	set_targets(t_ab *ab);
 int		is_sorted(t_pile *pile);
+
+int		get_dir(t_pile *pile, t_pile *node);
+t_pile	*get_min_node(t_pile *pile);
+t_pile	*get_cheapest(t_ab *ab);
+
+int		total_cost(t_pile *node, t_ab *ab);
+
+void	put_targets_on_top(t_ab *ab, t_pile *cheapest, t_pile *target);
+void	put_min_on_top(t_ab *ab);
+
+void	combine_rotates(t_ab *ab, t_pile *cheapest, t_pile *target);
+void	combine_r_rotates(t_ab *ab, t_pile *cheapest, t_pile *target);
+
+void	destroy_pile(t_ab *ab);
+long	ft_atol(const char *str);
 
 #endif //PUSH_SWAPH_H

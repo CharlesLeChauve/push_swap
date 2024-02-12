@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   a_actions.c                                        :+:      :+:    :+:   */
+/*   double_action_repeater.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 10:42:46 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/12 06:29:29 by tgibert          ###   ########.fr       */
+/*   Created: 2024/02/12 08:43:19 by tgibert           #+#    #+#             */
+/*   Updated: 2024/02/12 08:48:35 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sa(t_ab *ab)
+void	rrn(t_ab *ab, int n)
 {
-	ft_printf("sa\n");
-	swap(&(ab->pile_a));
+	int	i;
+
+	i = 0;
+	while (i++ < n)
+		rr(ab);
 }
 
-void	ra(t_ab *ab)
+void	rrrn(t_ab *ab, int n)
 {
-	ft_printf("ra\n");
-	rotate(&(ab->pile_a));
-}
+	int	i;
 
-void	rra(t_ab *ab)
-{
-	ft_printf("rra\n");
-	reverse_rotate(&(ab->pile_a));
-}
-
-void	pa(t_ab *ab)
-{
-	ft_printf("pa\n");
-	push(&ab->pile_b, &ab->pile_a);
+	i = 0;
+	while (i++ < n)
+		rrr(ab);
 }

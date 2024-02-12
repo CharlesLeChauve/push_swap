@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 10:43:49 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/07 08:30:28 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 06:33:39 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	swap(t_pile **pile)
 
 void	rotate(t_pile **pile)
 {
-	t_pile *node;
+	t_pile	*node;
 
 	node = *pile;
 	if (!*pile || pile_size(*pile) < 2)
-		return;
+		return ;
 	*pile = (*pile)->next;
 	pile_add_back(pile, node);
 }
@@ -40,7 +40,7 @@ void	reverse_rotate(t_pile **pile)
 	t_pile	*last_node;
 
 	if (!*pile || pile_size(*pile) < 2)
-		return;
+		return ;
 	last_node = pile_last(*pile);
 	last_node->prev->next = NULL;
 	last_node->prev = NULL;
@@ -51,10 +51,10 @@ void	reverse_rotate(t_pile **pile)
 
 void	push(t_pile **src, t_pile **dst)
 {
-	t_pile *node;
+	t_pile	*node;
 
 	if (!*src)
-		return;
+		return ;
 	else if (pile_size(*src) == 1)
 	{
 		pile_add_front(dst, *src);

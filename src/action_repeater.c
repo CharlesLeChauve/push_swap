@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:41:19 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/07 08:30:28 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/12 08:43:33 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,4 @@ void	rbn(t_ab *ab, int n)
 	i = 0;
 	while (i++ < n)
 		rb(ab);
-}
-
-void	rrn(t_ab *ab, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i++ < n)
-		rr(ab);
-}
-
-void	rrrn(t_ab *ab, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i++ < n)
-		rrr(ab);
 }
