@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:41:30 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/12 16:36:21 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:27:04 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ void	put_min_on_top(t_ab *ab);
 void	combine_rotates(t_ab *ab, t_pile *cheapest, t_pile *target);
 void	combine_r_rotates(t_ab *ab, t_pile *cheapest, t_pile *target);
 
-void	destroy_pile(t_ab *ab);
+void	destroy_piles(t_ab *ab);
+void	destroy_arg(char **arg);
 long	ft_atol(const char *str);
+void	destroy_pile(t_pile *pile);
+void	destroy_arg(char **arg);
 
 #endif //PUSH_SWAPH_H

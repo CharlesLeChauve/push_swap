@@ -6,28 +6,11 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 08:37:33 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/12 16:49:07 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:22:44 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker.h"
-
-char	*join_buffer(char *buffer, char *line)
-{
-	int		line_len;
-	int		i;
-	char	*newl;
-
-	line_len = ft_strlen(line);
-	i = -1;
-	newl = (char *)malloc(line_len + 2);
-	while (++i < line_len)
-		newl[i] = line[i];
-	newl[i++] = *buffer;
-	newl[i] = '\0';
-	free(line);
-	return (newl);
-}
 
 char	*read_instructions(void)
 {
@@ -46,14 +29,6 @@ char	*read_instructions(void)
 		instructions = join_buffer(buffer, instructions);
 	}
 	free(buffer);
-	return (instructions);
-}
-
-char	**parse_instructions(char *raw)
-{
-	char	**instructions;
-
-	instructions = ft_split(raw, '\n');
 	return (instructions);
 }
 
@@ -81,11 +56,44 @@ void	exec_action(t_ab *ab, char *instruct)
 		srr(ab);
 	else if (!ft_strcmp(instruct, "rrr"))
 		srrr(ab);
-	else
+}
+
+int	verify_instructions(char **instructions, t_pile *pile)
+{
+	int	i;
+
+	i = 0;
+	while (instructions[i])
 	{
-		ft_perror("Error\n");
-		exit(0);
+		if (!is_an_instruct(instructions[i]))
+		{
+			destroy_pile(pile);
+			destroy_arg(instructions);
+			ft_perror("Error\n");
+			return (0);
+		}
+		i++;
 	}
+	return (1);
+}
+
+void	checker(char **instructions, t_ab *ab, char *raw_instructions)
+{
+	int	i;
+
+	i = 0;
+	while (instructions[i])
+		exec_action(ab, instructions[i++]);
+	if (is_sorted(ab->pile_a) && !ab->pile_b)
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n"); 
+	free(raw_instructions);
+	i = 0;
+	while (instructions[i])
+		free(instructions[i++]);
+	free(instructions);
+	destroy_piles(ab);
 }
 
 int	main(int argc, char *argv[])
@@ -108,16 +116,8 @@ int	main(int argc, char *argv[])
 	}
 	raw_instructions = read_instructions();
 	instructions = parse_instructions(raw_instructions);
-	while (instructions[i])
-		exec_action(&ab, instructions[i++]);
-	if (is_sorted(ab.pile_a) && !ab.pile_b)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
-	free(raw_instructions);
-	i = 0;
-	while (instructions[i])
-		free(instructions[i++]);
-	free(instructions);
-	destroy_pile(&ab);
+	if (!verify_instructions(instructions, ab.pile_a))
+		return (0);
+	checker(instructions, &ab, raw_instructions);
+	return (0);
 }

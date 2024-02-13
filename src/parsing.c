@@ -6,24 +6,12 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:22:38 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/12 16:51:44 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:26:14 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	destroy_arg(char **arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg[i])
-	{
-		free(arg[i]);
-		i++;
-	}
-	free(arg);
-}
 
 int	already_seen(int value, t_pile *pile)
 {
@@ -56,10 +44,16 @@ int	check_arg(char *arg, long value, t_pile *pile)
 	return (1);
 }
 
+void	*clean_pile_and_arg(char **arg, t_pile *pile)
+{
+	destroy_arg(arg);
+	destroy_pile(pile);
+	return (NULL);
+}
+
 t_pile	*create_first_pile(char **av)
 {
 	t_pile	*pile;
-	t_pile	*new;
 	char	**actual_arg;
 	long	value;
 	int		i;
@@ -76,12 +70,8 @@ t_pile	*create_first_pile(char **av)
 			value = ft_atol(actual_arg[j]);
 			if (!(value <= IMX) || !(value >= IMN)
 				|| !check_arg(actual_arg[j], value, pile))
-			{
-				destroy_arg(actual_arg);
-				return (NULL);
-			}
-			new = new_pile_node(value);
-			pile_add_back(&pile, new);
+				return (clean_pile_and_arg(actual_arg, pile));
+			pile_add_back(&pile, new_pile_node(value));
 		}
 		destroy_arg(actual_arg);
 	}

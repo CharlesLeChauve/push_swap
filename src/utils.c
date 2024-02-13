@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 10:40:18 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/12 16:36:43 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 08:13:47 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	total_cost(t_pile *node, t_ab *ab)
 	return (node->cost + node->target->cost);
 }
 
-void	destroy_pile(t_ab *ab)
+void	destroy_piles(t_ab *ab)
 {
 	t_pile	*node;
 	t_pile	*next;

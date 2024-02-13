@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 13:09:49 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/12 16:41:08 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 08:13:47 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ int	main(int ac, char *av[])
 		resolve_small(&ab);
 	else if (!is_sorted(ab.pile_a))
 		sort_long(&ab);
-	destroy_pile(&ab);
+	destroy_piles(&ab);
 	return (0);
 }
