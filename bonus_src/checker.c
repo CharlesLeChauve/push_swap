@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 08:37:33 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/13 14:22:44 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:53:40 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	verify_instructions(char **instructions, t_pile *pile)
 	return (1);
 }
 
-void	checker(char **instructions, t_ab *ab, char *raw_instructions)
+void	checker(char **instructions, t_ab *ab)
 {
 	int	i;
 
@@ -87,11 +87,13 @@ void	checker(char **instructions, t_ab *ab, char *raw_instructions)
 	if (is_sorted(ab->pile_a) && !ab->pile_b)
 		ft_printf("OK\n");
 	else
-		ft_printf("KO\n"); 
-	free(raw_instructions);
+		ft_printf("KO\n");
 	i = 0;
 	while (instructions[i])
-		free(instructions[i++]);
+	{
+		free(instructions[i]);
+		i++;
+	}
 	free(instructions);
 	destroy_piles(ab);
 }
@@ -118,6 +120,6 @@ int	main(int argc, char *argv[])
 	instructions = parse_instructions(raw_instructions);
 	if (!verify_instructions(instructions, ab.pile_a))
 		return (0);
-	checker(instructions, &ab, raw_instructions);
+	checker(instructions, &ab);
 	return (0);
 }

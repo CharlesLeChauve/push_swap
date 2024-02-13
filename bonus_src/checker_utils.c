@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:15:49 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/13 14:21:26 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:54:12 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	is_an_instruct(char *instruct)
 {
-	if (!ft_strcmp(instruct, "ra") && !ft_strcmp(instruct, "rra") && !ft_strcmp(instruct, "rb")
-		&& !ft_strcmp(instruct, "rrb") && !ft_strcmp(instruct, "rr") && !ft_strcmp(instruct, "rrr")
-		&& !ft_strcmp(instruct, "pa") && !ft_strcmp(instruct, "pb") && !ft_strcmp(instruct, "sa")
-		&& !ft_strcmp(instruct, "sb") && !ft_strcmp(instruct, "ss"))
+	if (ft_strcmp(instruct, "ra") && ft_strcmp(instruct, "rra")
+		&& ft_strcmp(instruct, "rb") && ft_strcmp(instruct, "rrb")
+		&& ft_strcmp(instruct, "rr") && ft_strcmp(instruct, "rrr")
+		&& ft_strcmp(instruct, "pa") && ft_strcmp(instruct, "pb")
+		&& ft_strcmp(instruct, "sa") && ft_strcmp(instruct, "sb")
+		&& ft_strcmp(instruct, "ss"))
 		return (0);
 	return (1);
 }
@@ -27,6 +29,7 @@ char	**parse_instructions(char *raw)
 	char	**instructions;
 
 	instructions = ft_split(raw, '\n');
+	free(raw);
 	return (instructions);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:25:37 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/13 14:27:53 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:53:22 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	destroy_pile(t_pile *pile)
 {
-	t_pile *node;
-	t_pile *next;
+	t_pile	*node;
+	t_pile	*next;
 
 	node = pile;
 	while (node != NULL)

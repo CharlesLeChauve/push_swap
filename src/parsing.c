@@ -6,12 +6,11 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:22:38 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/13 14:26:14 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/13 14:53:28 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
 
 int	already_seen(int value, t_pile *pile)
 {
