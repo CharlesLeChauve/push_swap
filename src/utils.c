@@ -6,7 +6,7 @@
 /*   By: tgibert <tgibert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 10:40:18 by tgibert           #+#    #+#             */
-/*   Updated: 2024/02/13 08:13:47 by tgibert          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:19:41 by tgibert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	is_sorted(t_pile *pile)
 	{
 		if (pile->nb < prev_nb)
 			return (0);
+		prev_nb = pile->nb;
 		pile = pile->next;
 	}
 	return (1);
